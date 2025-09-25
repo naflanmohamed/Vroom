@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vroom - Car Rental</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+        .search-card {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .car-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="min-h-screen">
+
+        <!-- Header -->
+        <header class="bg-white shadow-md sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800">
+                    <i class="fas fa-car-side text-blue-600"></i> Vroom
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition">Deals</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition">Locations</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition">Support</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                     <button class="hidden md:block bg-transparent text-gray-800 font-semibold py-2 px-4 rounded-lg">
+                        Sign In
+                    </button>
+                    <button class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition shadow">
+                        Sign Up
+                    </button>
+                    <button class="md:hidden text-gray-800 text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="gradient-bg h-96 flex items-center justify-center text-white relative">
+            <div class="absolute inset-0 bg-black opacity-30"></div>
+            <div class="container mx-auto px-6 text-center z-10">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Find Your Perfect Ride</h1>
+                <p class="text-lg md:text-xl mb-8">Rent a car for your next adventure. Easy, fast, and reliable.</p>
+
+                <!-- Search Form -->
+                <div class="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-4 md:p-6 max-w-4xl mx-auto">
+                    <form class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 items-center">
+                        <div class="md:col-span-2 lg:col-span-2">
+                             <label for="location" class="sr-only">Location</label>
+                             <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-map-marker-alt text-gray-500"></i>
+                                </div>
+                                <input type="text" id="location" placeholder="Enter city, airport, or address" class="w-full pl-10 pr-4 py-3 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        <div>
+                             <label for="pickup-date" class="sr-only">Pick-up Date</label>
+                             <input type="date" id="pickup-date" class="w-full px-4 py-3 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="return-date" class="sr-only">Return Date</label>
+                            <input type="date" id="return-date" class="w-full px-4 py-3 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition shadow-lg md:col-span-4 lg:col-span-1">
+                            <i class="fas fa-search mr-2"></i>Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-6 py-12">
+            <div class="flex flex-col lg:flex-row gap-8">
+
+                <!-- Filters Sidebar -->
+                <aside class="w-full lg:w-1/4">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="font-bold text-xl mb-4 border-b pb-2">Filters</h3>
+                        
+                        <!-- Price Range -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-2">Price Range</h4>
+                            <input type="range" min="10" max="500" value="250" class="w-full">
+                            <div class="flex justify-between text-sm text-gray-600 mt-1">
+                                <span>$10</span>
+                                <span>$500+</span>
+                            </div>
+                        </div>
+
+                        <!-- Car Type -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-2">Car Type</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600 rounded">
+                                    <span class="ml-2 text-gray-700">Economy</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600 rounded" checked>
+                                    <span class="ml-2 text-gray-700">SUV</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600 rounded">
+                                    <span class="ml-2 text-gray-700">Luxury</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600 rounded">
+                                    <span class="ml-2 text-gray-700">Van</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Transmission -->
+                        <div>
+                            <h4 class="font-semibold mb-2">Transmission</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="transmission" class="form-radio text-blue-600">
+                                    <span class="ml-2 text-gray-700">Automatic</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="transmission" class="form-radio text-blue-600">
+                                    <span class="ml-2 text-gray-700">Manual</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </aside>
+
+                <!-- Car Listings -->
+                <section class="w-full lg:w-3/4">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Available Cars (24)</h2>
+                        <div>
+                            <label for="sort" class="sr-only">Sort by</label>
+                            <select id="sort" class="rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Popularity</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        
+                        <!-- Car Card 1 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden car-card">
+                            <img src="https://placehold.co/400x250/3498db/ffffff?text=Toyota+Camry" alt="Toyota Camry" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase">Sedan</p>
+                                        <h3 class="font-bold text-xl text-gray-800">Toyota Camry</h3>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold text-blue-600">$75</p>
+                                        <p class="text-sm text-gray-500">/ day</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-sm text-gray-600 mt-4 pt-4 border-t border-gray-200 justify-between">
+                                    <span class="flex items-center"><i class="fas fa-users mr-2 text-gray-400"></i> 5 Seats</span>
+                                    <span class="flex items-center"><i class="fas fa-cogs mr-2 text-gray-400"></i> Auto</span>
+                                    <span class="flex items-center"><i class="fas fa-gas-pump mr-2 text-gray-400"></i> 28 MPG</span>
+                                </div>
+                                <button class="w-full mt-6 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Car Card 2 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden car-card">
+                            <img src="https://placehold.co/400x250/e74c3c/ffffff?text=Jeep+Wrangler" alt="Jeep Wrangler" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase">SUV</p>
+                                        <h3 class="font-bold text-xl text-gray-800">Jeep Wrangler</h3>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold text-blue-600">$120</p>
+                                        <p class="text-sm text-gray-500">/ day</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-sm text-gray-600 mt-4 pt-4 border-t border-gray-200 justify-between">
+                                    <span class="flex items-center"><i class="fas fa-users mr-2 text-gray-400"></i> 4 Seats</span>
+                                    <span class="flex items-center"><i class="fas fa-cogs mr-2 text-gray-400"></i> Auto</span>
+                                    <span class="flex items-center"><i class="fas fa-gas-pump mr-2 text-gray-400"></i> 19 MPG</span>
+                                </div>
+                                <button class="w-full mt-6 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Car Card 3 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden car-card">
+                            <img src="https://placehold.co/400x250/2ecc71/ffffff?text=Honda+Civic" alt="Honda Civic" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase">Economy</p>
+                                        <h3 class="font-bold text-xl text-gray-800">Honda Civic</h3>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold text-blue-600">$60</p>
+                                        <p class="text-sm text-gray-500">/ day</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-sm text-gray-600 mt-4 pt-4 border-t border-gray-200 justify-between">
+                                    <span class="flex items-center"><i class="fas fa-users mr-2 text-gray-400"></i> 5 Seats</span>
+                                    <span class="flex items-center"><i class="fas fa-cogs mr-2 text-gray-400"></i> Manual</span>
+                                    <span class="flex items-center"><i class="fas fa-gas-pump mr-2 text-gray-400"></i> 35 MPG</span>
+                                </div>
+                                <button class="w-full mt-6 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Car Card 4 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden car-card">
+                            <img src="https://placehold.co/400x250/9b59b6/ffffff?text=Audi+A4" alt="Audi A4" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase">Luxury</p>
+                                        <h3 class="font-bold text-xl text-gray-800">Audi A4</h3>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold text-blue-600">$150</p>
+                                        <p class="text-sm text-gray-500">/ day</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-sm text-gray-600 mt-4 pt-4 border-t border-gray-200 justify-between">
+                                    <span class="flex items-center"><i class="fas fa-users mr-2 text-gray-400"></i> 5 Seats</span>
+                                    <span class="flex items-center"><i class="fas fa-cogs mr-2 text-gray-400"></i> Auto</span>
+                                    <span class="flex items-center"><i class="fas fa-gas-pump mr-2 text-gray-400"></i> 25 MPG</span>
+                                </div>
+                                <button class="w-full mt-6 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                            </div>
+                        </div>
+                        
+                         <!-- Car Card 5 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden car-card">
+                            <img src="https://placehold.co/400x250/f1c40f/ffffff?text=Ford+Explorer" alt="Ford Explorer" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase">SUV</p>
+                                        <h3 class="font-bold text-xl text-gray-800">Ford Explorer</h3>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold text-blue-600">$135</p>
+                                        <p class="text-sm text-gray-500">/ day</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-sm text-gray-600 mt-4 pt-4 border-t border-gray-200 justify-between">
+                                    <span class="flex items-center"><i class="fas fa-users mr-2 text-gray-400"></i> 7 Seats</span>
+                                    <span class="flex items-center"><i class="fas fa-cogs mr-2 text-gray-400"></i> Auto</span>
+                                    <span class="flex items-center"><i class="fas fa-gas-pump mr-2 text-gray-400"></i> 21 MPG</span>
+                                </div>
+                                <button class="w-full mt-6 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Car Card 6 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden car-card">
+                            <img src="https://placehold.co/400x250/1abc9c/ffffff?text=BMW+3+Series" alt="BMW 3 Series" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase">Luxury</p>
+                                        <h3 class="font-bold text-xl text-gray-800">BMW 3 Series</h3>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold text-blue-600">$160</p>
+                                        <p class="text-sm text-gray-500">/ day</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-sm text-gray-600 mt-4 pt-4 border-t border-gray-200 justify-between">
+                                    <span class="flex items-center"><i class="fas fa-users mr-2 text-gray-400"></i> 5 Seats</span>
+                                    <span class="flex items-center"><i class="fas fa-cogs mr-2 text-gray-400"></i> Auto</span>
+                                    <span class="flex items-center"><i class="fas fa-gas-pump mr-2 text-gray-400"></i> 26 MPG</span>
+                                </div>
+                                <button class="w-full mt-6 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Pagination -->
+                    <div class="mt-8 flex justify-center">
+                        <nav class="flex items-center space-x-2">
+                            <a href="#" class="px-4 py-2 text-gray-500 bg-white rounded-lg hover:bg-gray-100"><i class="fas fa-chevron-left"></i></a>
+                            <a href="#" class="px-4 py-2 text-white bg-blue-600 rounded-lg">1</a>
+                            <a href="#" class="px-4 py-2 text-gray-700 bg-white rounded-lg hover:bg-gray-100">2</a>
+                            <a href="#" class="px-4 py-2 text-gray-700 bg-white rounded-lg hover:bg-gray-100">3</a>
+                            <span class="px-4 py-2 text-gray-500">...</span>
+                            <a href="#" class="px-4 py-2 text-gray-700 bg-white rounded-lg hover:bg-gray-100">10</a>
+                            <a href="#" class="px-4 py-2 text-gray-500 bg-white rounded-lg hover:bg-gray-100"><i class="fas fa-chevron-right"></i></a>
+                        </nav>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white mt-12">
+            <div class="container mx-auto px-6 py-10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">Vroom</h3>
+                        <p class="text-gray-400">Your trusted partner for car rentals. We offer a wide range of vehicles to suit all your needs.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Company</h3>
+                        <ul>
+                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Press</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Support</h3>
+                        <ul>
+                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-500 text-sm">
+                    &copy; 2024 Vroom Car Rental. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
